@@ -3,3 +3,5 @@ version = 1
 
 [project]
 firmware = "src/main.py"
+
+# teste
