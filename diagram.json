@@ -1,7 +1,33 @@
 {
   "version": 1,
-  "author": "Uri Shaked",
-  "editor": "wokwi",
-  "parts": [ { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 0, "left": 0, "attrs": {} } ],
-  "connections": [ [ "esp:TX", "$serialMonitor:RX", "", [] ], [ "esp:RX", "$serialMonitor:TX", "", [] ] ]
+  "author": "seu-nome",
+  "devices": [
+    {
+      "type": "wokwi-pi-pico",
+      "id": "pico",
+      "top": 0,
+      "left": 0
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": -50,
+      "left": 100,
+      "attrs": { "color": "red" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn1",
+      "top": 50,
+      "left": 100,
+      "attrs": { "bounce": "0" }
+    }
+  ],
+  "connections": [
+    ["pico:GP2", "led1:A", "green"],
+    ["led1:C", "pico:GND", "black"],
+
+    ["pico:GP3", "btn1:1", "green"],
+    ["btn1:2", "pico:GND", "black"]
+  ]
 }
