@@ -1,5 +1,5 @@
 [wokwi]
-version = 1
+versio = 1
 
 [project]
-firmware = "src/main.py"
+firmware = 'src/main.py'
