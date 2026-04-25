@@ -25,9 +25,9 @@
   ],
   "connections": [
     ["pico:GP2", "led1:A"],
-    ["led1:C", "pico:GND"],
+    ["led1:C", "pico:GND.1"],
 
-    ["pico:GP3", "btn1:1"],
-    ["btn1:2", "pico:GND"]
+    ["pico:GP3", "btn1:1.l"],
+    ["btn1:2.l", "pico:GND.2"]
   ]
 }
