@@ -1,7 +1,8 @@
 {
   "version": 1,
   "author": "seu-nome",
-  "devices": [
+  "editor": "wokwi",
+  "parts": [
     {
       "type": "wokwi-pi-pico",
       "id": "pico",
@@ -19,15 +20,14 @@
       "type": "wokwi-pushbutton",
       "id": "btn1",
       "top": 50,
-      "left": 100,
-      "attrs": { "bounce": "0" }
+      "left": 100
     }
   ],
   "connections": [
-    ["pico:GP2", "led1:A", "green"],
-    ["led1:C", "pico:GND", "black"],
+    ["pico:GP2", "led1:A"],
+    ["led1:C", "pico:GND"],
 
-    ["pico:GP3", "btn1:1", "green"],
-    ["btn1:2", "pico:GND", "black"]
+    ["pico:GP3", "btn1:1"],
+    ["btn1:2", "pico:GND"]
   ]
 }
