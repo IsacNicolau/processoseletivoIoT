@@ -1,5 +1,5 @@
 [wokwi]
-versio = 1
+version = 1
 
 [project]
 firmware = 'src/main.py'
