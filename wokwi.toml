@@ -1,5 +1,10 @@
 [wokwi]
 version = 1
 
+[build]
+build-dir = "build"
+
 [project]
-firmware = "src/main.py"
+firmware = build/firmware.bin
+elf = build/firmware.elf
+
