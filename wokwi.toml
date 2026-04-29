@@ -1,7 +1,8 @@
 [wokwi]
 version = 1
-firmware = "build/firmware.bin"
-elf = "build/firmware.elf"
 
 [build]
 build-dir = "build"
+
+[env]
+WOKWI_TIMEOUT = "10000"

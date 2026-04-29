@@ -1,1 +1,1 @@
-mpremote
+# Wokwi MicroPython - Nenhuma dependência adicional necessária para este projeto

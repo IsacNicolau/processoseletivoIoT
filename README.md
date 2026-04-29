@@ -1,57 +1,60 @@
-# Projeto IoT – Controle de LED com Estados
-
-## 👤 Identificação
-Nome: Cicero Isac da Silva Farias  
-GitHub: IsacNicolau  
+# Processo Seletivo – Intensivo Maker | IoT
+## Sistema Embarcado: Controle de LED com Botão
 
 ---
 
-## 1️⃣ Visão Geral
-Este projeto implementa um sistema embarcado para controle de um LED com três modos de operação (desligado, ligado e piscando), utilizando um botão como interface de entrada do usuário.
+## Identificação do Candidato
 
-A cada acionamento do botão, o sistema alterna entre os estados.
-
----
-
-## 2️⃣ Arquitetura
-O sistema foi desenvolvido utilizando uma máquina de estados, controlada por um loop principal contínuo.
-
-Fluxo:
-- O botão é monitorado continuamente
-- Ao detectar um pressionamento (borda de descida), o estado é atualizado
-- O comportamento do LED depende do estado atual
-
-Estados:
-- OFF: LED desligado
-- ON: LED ligado continuamente
-- BLINK: LED piscando com temporização controlada
+**Nome:** Cicero Farias  
+**GitHub:** IsacNicolau
 
 ---
 
-## 3️⃣ Componentes
-- Raspberry Pi Pico (simulado no Wokwi)
-- LED (saída visual)
-- Botão (entrada do usuário)
+## O Que Este Projeto Faz?
+
+O projeto controla um **LED vermelho** usando um **botão**:
+- Pressiona o botão → LED acende
+- Pressiona novamente → LED apaga
+- Repete indefinidamente
 
 ---
 
-## 4️⃣ Decisões Técnicas
-- Uso de máquina de estados para facilitar escalabilidade
-- Implementação de debounce simples via software
-- Separação da lógica em funções para melhor organização
-- Uso de temporização não bloqueante no modo BLINK
+## Como Funciona?
+
+O código:
+1. **Inicializa** os pinos (GPIO 13 para LED, GPIO 2 para Botão)
+2. **Lê continuamente** se o botão foi pressionado
+3. **Evita erros** esperando 50ms entre leituras (debounce)
+4. **Alterna** o LED quando detecta a pressão
+5. **Repete** o ciclo
 
 ---
 
-## 5️⃣ Resultados
-A simulação apresenta funcionamento correto, com alternância entre os três estados conforme interação com o botão.
+## Componentes Usados
 
-O sistema executa sem erros na simulação e nas GitHub Actions.
+| Componente | Função |
+|-----------|--------|
+| ESP32 | Microcontrolador que executa o código |
+| LED Vermelho | Acende/apaga quando o botão é pressionado |
+| Botão | Acionamento do LED |
 
 ---
 
-## 6️⃣ Comentários
-Como melhorias futuras, poderiam ser implementados:
-- Debounce mais robusto (ex: filtro por tempo)
-- Uso de interrupções ao invés de polling
-- Expansão para múltiplos LEDs ou sensores
+## Arquivos do Projeto
+
+processoseletivoIoT/
+├── src/main.py
+├── diagram.json
+├── wokwi.toml
+├── requirements.txt
+└── README.md
+
+---
+
+## Como Testar
+
+Rodando localmente: wokwi-cli --timeout 10000 diagram.json
+
+---
+
+Projeto pronto para avaliação!

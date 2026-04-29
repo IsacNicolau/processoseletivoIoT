@@ -1,33 +1,58 @@
 {
   "version": 1,
-  "author": "seu-nome",
-  "devices": [
+  "author": "Seu Nome",
+  "editor": "wokwi",
+  "parts": [
     {
-      "type": "wokwi-pi-pico",
-      "id": "pico",
+      "type": "wokwi-esp32-devkit-v1",
+      "id": "esp32",
       "top": 0,
-      "left": 0
+      "left": 0,
+      "attrs": {
+        "env": "micropython"
+      }
     },
     {
       "type": "wokwi-led",
       "id": "led1",
-      "top": -50,
-      "left": 100,
-      "attrs": { "color": "red" }
+      "top": 100,
+      "left": 250,
+      "attrs": {
+        "color": "red"
+      }
     },
     {
       "type": "wokwi-pushbutton",
       "id": "btn1",
-      "top": 50,
-      "left": 100,
-      "attrs": { "bounce": "0" }
+      "top": 200,
+      "left": 250,
+      "attrs": {}
     }
   ],
   "connections": [
-    ["pico:GP2", "led1:A", "green"],
-    ["led1:C", "pico:GND", "black"],
-
-    ["pico:GP3", "btn1:1", "green"],
-    ["btn1:2", "pico:GND", "black"]
+    [
+      "esp32:13",
+      "led1:A",
+      "red",
+      []
+    ],
+    [
+      "led1:C",
+      "esp32:GND",
+      "black",
+      []
+    ],
+    [
+      "esp32:2",
+      "btn1:A",
+      "blue",
+      []
+    ],
+    [
+      "btn1:B",
+      "esp32:GND",
+      "black",
+      []
+    ]
   ]
 }

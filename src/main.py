@@ -1,84 +1,47 @@
+"""
+Sistema Embarcado: Controle de LED com Botão
+Projeto para Wokwi Simulation
+"""
+
 import time
+from machine import Pin
 
-# Simulação de pinos (Wokwi normalmente usa machine ou similar dependendo da placa)
-try:
-    from machine import Pin
-except ImportError:
-    # fallback para simulação local
-    class Pin:
-        IN = 0
-        OUT = 1
-        PULL_UP = 2
+# Definir pinos
+LED = Pin(13, Pin.OUT)      # LED no pino 13
+BUTTON = Pin(2, Pin.IN)     # Botão no pino 2
 
-        def __init__(self, pin, mode, pull=None):
-            self.value_state = 1
+# Estado inicial
+led_state = False
 
-        def value(self, v=None):
-            if v is None:
-                return self.value_state
-            self.value_state = v
+def toggle_led():
+    """Alterna o estado do LED"""
+    global led_state
+    led_state = not led_state
+    LED.value(led_state)
+    state_text = "ACESO" if led_state else "APAGADO"
+    print(f"LED {state_text}")
 
+def main():
+    """Função principal"""
+    print("Sistema Embarcado: Controle de LED")
+    print("Pressione o botão para alternar o LED...")
+    
+    last_button_state = 0
+    debounce_time = 0
+    
+    while True:
+        current_button_state = BUTTON.value()
+        
+        # Debounce simples
+        if current_button_state != last_button_state:
+            debounce_time = time.ticks_ms()
+        
+        if time.ticks_ms() - debounce_time > 50:
+            if current_button_state == 1 and last_button_state == 0:
+                toggle_led()
+            last_button_state = current_button_state
+        
+        time.sleep(0.01)
 
-# Configuração dos pinos
-led = Pin(2, Pin.OUT)
-button = Pin(3, Pin.IN, Pin.PULL_UP)
-
-# Estados
-STATE_OFF = 0
-STATE_ON = 1
-STATE_BLINK = 2
-
-state = STATE_OFF
-last_button = 1
-
-
-def set_led(value):
-    led.value(value)
-
-
-def button_pressed():
-    global last_button
-    current = button.value()
-    pressed = last_button == 1 and current == 0
-    last_button = current
-
-    if pressed:
-        time.sleep(0.05)  # debounce simples
-
-    return pressed
-
-
-def led_off():
-    set_led(0)
-
-
-def led_on():
-    set_led(1)
-
-
-blink_state = 0
-last_blink_time = 0
-
-def led_blink():
-    global blink_state, last_blink_time
-    now = time.time()
-
-    if now - last_blink_time > 0.3:
-        blink_state = not blink_state
-        set_led(blink_state)
-        last_blink_time = now
-
-
-# Loop principal
-while True:
-    if button_pressed():
-        state = (state + 1) % 3
-
-    if state == STATE_OFF:
-        led_off()
-    elif state == STATE_ON:
-        led_on()
-    elif state == STATE_BLINK:
-        led_blink()
-
-    time.sleep(0.1)
+if __name__ == "__main__":
+    main()
