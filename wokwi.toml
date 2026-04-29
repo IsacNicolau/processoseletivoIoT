@@ -1,8 +1,5 @@
 [wokwi]
 version = 1
 
-[build]
-build-dir = "build"
-
 [env]
 WOKWI_TIMEOUT = "10000"
